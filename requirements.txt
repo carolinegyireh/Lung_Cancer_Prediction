@@ -6,3 +6,4 @@ pandas
 xgboost
 plotly
 SpeechRecognition
+google-cloud-speech
