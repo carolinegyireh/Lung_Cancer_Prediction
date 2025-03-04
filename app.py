@@ -11,6 +11,10 @@ st.markdown("""
     <style>
         body {
             background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .css-1d391kg {
             font-size: 1.2rem;
@@ -23,6 +27,22 @@ st.markdown("""
         }
         .stButton>button:hover {
             background-color: #ff1a1a;
+        }
+        .title {
+            color: #FF69B4;  /* Pink color (cancer awareness) */
+            text-align: center;
+        }
+        .stTextInput>div>input {
+            text-align: center;
+        }
+        .stSelectbox>div>div>input {
+            text-align: center;
+        }
+        .stNumberInput>div>input {
+            text-align: center;
+        }
+        .stRadio>div>div>label {
+            text-align: center;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -37,7 +57,7 @@ def predict_disease(features):
     return "🛑 Disease Detected ✅" if prediction == 1 else "✅ No Disease ❌"
 
 # Streamlit UI components
-st.title("🩺 Lung Cancer Predictor")
+st.markdown('<h1 class="title">🩺 Lung Cancer Predictor</h1>', unsafe_allow_html=True)
 st.write("### Enter patient details to predict disease presence.")
 
 # Create columns for better layout
