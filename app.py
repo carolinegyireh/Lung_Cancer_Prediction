@@ -4,6 +4,7 @@ import numpy as np
 import plotly.express as px
 import speech_recognition as sr
 
+# Streamlit UI configuration - Make sure this is the first Streamlit command
 st.set_page_config(page_title="MultiDiPredXpert", layout="wide", initial_sidebar_state="expanded")
 
 # Optional: Add custom CSS to adjust the appearance further
@@ -39,18 +40,6 @@ def predict_disease(features):
 # Streamlit UI components
 st.title("🩺 Lung Cancer Predictor")
 st.write("### Enter patient details to predict disease presence.")
-
-# Add a theme toggle (Dark/Light mode)
-theme = st.selectbox("Choose Theme", ["Light", "Dark"])
-if theme == "Dark":
-    st.markdown("""
-        <style>
-        body {
-            background-color: #121212;
-            color: white;
-        }
-        </style>
-    """, unsafe_allow_html=True)
 
 # Create columns for better layout
 col1, col2 = st.columns(2)
