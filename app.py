@@ -11,56 +11,10 @@ def predict_disease(features):
     prediction = rf_model.predict(features)[0]
     return "🛑 Lung Cancer Detected ✅" if prediction == 1 else "✅ No Lung Cancer Detected ❌"
 
-# Apply custom CSS for styling
-st.markdown(
-    """
-    <style>
-    body {
-        background-color: #f8f9fa;
-        color: #333333;
-    }
-    .stApp {
-        background-color: #ffffff;
-        font-family: 'Arial', sans-serif;
-    }
-    .stButton>button {
-        background-color: #007BFF;
-        color: white;
-        border-radius: 10px;
-        font-size: 18px;
-        padding: 10px;
-        border: none;
-        transition: 0.3s;
-    }
-    .stButton>button:hover {
-        background-color: #0056b3;
-    }
-    .title {
-        color: #007BFF;
-        text-align: center;
-        font-size: 40px;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-    .disclaimer {
-        font-size: 14px;
-        color: #ff0000;
-        text-align: center;
-    }
-    .input-container {
-        padding: 15px;
-        background-color: #f1f1f1;
-        border-radius: 10px;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
-# Streamlit UI
+# Streamlit UI configuration
 st.set_page_config(page_title="MultiDiPredXpert", layout="centered")
 
-st.markdown('<p class="title">🩺 MultiDiPredXpert - Lung Cancer Prediction</p>', unsafe_allow_html=True)
+st.title("🩺 Lung Cancer Predictor")
 st.write("### Enter patient details to predict disease presence.")
 
 # Create columns for better layout
@@ -105,11 +59,10 @@ input_features = [
     healthcare_access_poor, early_detection
 ]
 
-# Predict button with styling
-st.markdown("<br>", unsafe_allow_html=True)  # Add spacing
+# Predict button with style
 if st.button("🔍 Predict Now"):
     result = predict_disease(input_features)
     st.success(result)
 
 # Disclaimer
-st.markdown('<p class="disclaimer">⚕️ **Disclaimer:** This tool is for educational purposes only. Consult a doctor for medical advice.</p>', unsafe_allow_html=True)
+st.markdown("⚕️ **Disclaimer:** This tool is for educational purposes only. Consult a doctor for medical advice.")
