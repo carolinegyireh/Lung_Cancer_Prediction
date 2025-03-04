@@ -9,29 +9,70 @@ rf_model = joblib.load("models/xgboost_model.pkl")
 def predict_disease(features):
     features = np.array(features).reshape(1, -1)
     prediction = rf_model.predict(features)[0]
-    return "Disease Detected ✅" if prediction == 1 else "No Disease ❌"
+    return "🛑 Disease Detected ✅" if prediction == 1 else "✅ No Disease ❌"
+
+# Apply custom CSS for styling
+st.markdown(
+    """
+    <style>
+    body {
+        background-color: #f4f4f4;
+    }
+    .stApp {
+        background-color: #f9f9f9;
+        font-family: 'Arial', sans-serif;
+    }
+    .stButton>button {
+        background-color: #007BFF;
+        color: white;
+        border-radius: 10px;
+        font-size: 18px;
+        padding: 10px;
+    }
+    .stButton>button:hover {
+        background-color: #0056b3;
+    }
+    .title {
+        color: #007BFF;
+        text-align: center;
+        font-size: 40px;
+        font-weight: bold;
+    }
+    .disclaimer {
+        font-size: 14px;
+        color: #ff0000;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 # Streamlit UI
 st.set_page_config(page_title="MultiDiPredXpert", layout="centered")
 
-st.title("🩺 Lung Cancer Predictor")
-st.write("Enter patient details to predict disease presence.")
+st.markdown('<p class="title">🩺Lung Cancer Predictor</p>', unsafe_allow_html=True)
+st.write("## Enter patient details to predict disease presence.")
 
-# Sample input fields for your dataset columns (EXCLUDING 'lung_cancer_diagnosis')
-age = st.number_input("Age", min_value=0, max_value=120, value=30)
-gender = st.selectbox("Gender", ["Male", "Female"])
-smoker = st.selectbox("Smoker", ["Yes", "No"])
-years_of_smoking = st.number_input("Years of Smoking", min_value=0, value=5)
-cigarettes_per_day = st.number_input("Cigarettes per Day", min_value=0, value=10)
-passive_smoker = st.selectbox("Passive Smoker", ["Yes", "No"])
-family_history = st.selectbox("Family History", ["Yes", "No"])
-adenocarcinoma_type = st.selectbox("Adenocarcinoma Type", ["Yes", "No"])
-air_pollution_exposure_low = st.selectbox("Low Air Pollution Exposure", ["Yes", "No"])
-air_pollution_exposure_medium = st.selectbox("Medium Air Pollution Exposure", ["Yes", "No"])
-occupational_exposure = st.selectbox("Occupational Exposure", ["Yes", "No"])
-indoor_pollution = st.selectbox("Indoor Pollution", ["Yes", "No"])
-healthcare_access_poor = st.selectbox("Poor Healthcare Access", ["Yes", "No"])
-early_detection = st.selectbox("Early Detection", ["Yes", "No"])
+# Create columns for better layout
+col1, col2 = st.columns(2)
+
+with col1:
+    age = st.number_input("📌 Age", min_value=0, max_value=120, value=30)
+    gender = st.selectbox("📌 Gender", ["Male", "Female"])
+    smoker = st.selectbox("📌 Smoker", ["Yes", "No"])
+    years_of_smoking = st.number_input("📌 Years of Smoking", min_value=0, value=5)
+    cigarettes_per_day = st.number_input("📌 Cigarettes per Day", min_value=0, value=10)
+    passive_smoker = st.selectbox("📌 Passive Smoker", ["Yes", "No"])
+    family_history = st.selectbox("📌 Family History", ["Yes", "No"])
+
+with col2:
+    adenocarcinoma_type = st.selectbox("📌 Adenocarcinoma Type", ["Yes", "No"])
+    air_pollution_exposure_low = st.selectbox("📌 Low Air Pollution Exposure", ["Yes", "No"])
+    air_pollution_exposure_medium = st.selectbox("📌 Medium Air Pollution Exposure", ["Yes", "No"])
+    occupational_exposure = st.selectbox("📌 Occupational Exposure", ["Yes", "No"])
+    indoor_pollution = st.selectbox("📌 Indoor Pollution", ["Yes", "No"])
+    healthcare_access_poor = st.selectbox("📌 Poor Healthcare Access", ["Yes", "No"])
+    early_detection = st.selectbox("📌 Early Detection", ["Yes", "No"])
 
 # Convert categorical features to numerical values for the model
 gender = 1 if gender == "Male" else 0
@@ -46,7 +87,7 @@ indoor_pollution = 1 if indoor_pollution == "Yes" else 0
 healthcare_access_poor = 1 if healthcare_access_poor == "Yes" else 0
 early_detection = 1 if early_detection == "Yes" else 0
 
-# Collect input features (EXCLUDING 'lung_cancer_diagnosis')
+# Collect input features
 input_features = [
     age, gender, smoker, years_of_smoking, cigarettes_per_day, passive_smoker,
     family_history, adenocarcinoma_type, air_pollution_exposure_low,
@@ -54,9 +95,11 @@ input_features = [
     healthcare_access_poor, early_detection
 ]
 
-# Predict button
-if st.button("Predict"):
+# Predict button with styling
+st.markdown("<br>", unsafe_allow_html=True)  # Add spacing
+if st.button("🔍 Predict Now"):
     result = predict_disease(input_features)
     st.success(result)
 
-st.write("⚕️ **Disclaimer:** This tool is for educational purposes only. Consult a doctor for medical advice.")
+# Disclaimer
+st.markdown('<p class="disclaimer">⚕️ **Disclaimer:** This tool is for educational purposes only. Consult a doctor for medical advice.</p>', unsafe_allow_html=True)
