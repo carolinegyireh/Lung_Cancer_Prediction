@@ -14,10 +14,10 @@ def predict_disease(features):
 # Streamlit UI
 st.set_page_config(page_title="MultiDiPredXpert", layout="centered")
 
-st.title("🩺Lung Cancer Predictor")
+st.title("🩺 Lung Cancer Predictor")
 st.write("Enter patient details to predict disease presence.")
 
-# Sample input fields for your dataset columns
+# Sample input fields for your dataset columns (EXCLUDING 'lung_cancer_diagnosis')
 age = st.number_input("Age", min_value=0, max_value=120, value=30)
 gender = st.selectbox("Gender", ["Male", "Female"])
 smoker = st.selectbox("Smoker", ["Yes", "No"])
@@ -46,10 +46,10 @@ indoor_pollution = 1 if indoor_pollution == "Yes" else 0
 healthcare_access_poor = 1 if healthcare_access_poor == "Yes" else 0
 early_detection = 1 if early_detection == "Yes" else 0
 
-# Collect input features
+# Collect input features (EXCLUDING 'lung_cancer_diagnosis')
 input_features = [
     age, gender, smoker, years_of_smoking, cigarettes_per_day, passive_smoker,
-    family_history, lung_cancer_diagnosis, adenocarcinoma_type, air_pollution_exposure_low,
+    family_history, adenocarcinoma_type, air_pollution_exposure_low,
     air_pollution_exposure_medium, occupational_exposure, indoor_pollution,
     healthcare_access_poor, early_detection
 ]
