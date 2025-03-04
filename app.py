@@ -3,7 +3,7 @@ import joblib
 import numpy as np
 
 # Load saved models
-rf_model = joblib.load("../models/xgboost_model.pkl")
+rf_model = joblib.load("models/xgboost_model.pkl")
 
 # Function to make predictions
 def predict_disease(features):
