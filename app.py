@@ -39,6 +39,7 @@ def predict_disease(features):
 # Streamlit UI components
 st.title("🩺 Lung Cancer Predictor")
 st.write("### Enter patient details to predict disease presence.")
+st.write("The",  help ="", "contains decriptions about the field incase you don't seem to understand any")
 
 # Add a theme toggle (Dark/Light mode)
 theme = st.selectbox("Choose Theme", ["Light", "Dark"])
