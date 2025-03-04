@@ -1,7 +1,6 @@
 import streamlit as st
 import joblib
 import numpy as np
-import plotly.express as px
 import speech_recognition as sr
 
 # Streamlit UI configuration - Make sure this is the first Streamlit command
@@ -87,10 +86,6 @@ input_features = [
 if st.button("🔍 Predict Now"):
     result = predict_disease(input_features)
     st.success(result)
-
-    # Display a related bar chart for smoking and air pollution
-    fig = px.bar(x=["Cigarettes per Day", "Years of Smoking"], y=[cigarettes_per_day, years_of_smoking])
-    st.plotly_chart(fig)
 
 # Speech-to-text input
 st.write("📢 You can also speak your details! Click below to start voice input.")
