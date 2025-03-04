@@ -14,19 +14,58 @@ def predict_disease(features):
     prediction = rf_model.predict(features)[0]
     return "🛑 Disease Detected ✅" if prediction == 1 else "✅ No Disease ❌"
 
+# Apply custom CSS for better design
+st.markdown("""
+    <style>
+    .title {
+        color: #4CAF50;
+        font-size: 50px;
+        font-weight: bold;
+        text-align: center;
+    }
+    .subtitle {
+        font-size: 20px;
+        color: #555;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .container {
+        background-color: #f8f8f8;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .input-section {
+        margin-bottom: 20px;
+    }
+    .btn {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 15px 32px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .btn:hover {
+        background-color: #45a049;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # Streamlit UI components
-st.title("🩺 Lung Cancer Predictor")
-st.write("### Enter patient details to predict disease presence.")
+st.markdown('<div class="title">🩺 Lung Cancer Predictor</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">Enter patient details to predict disease presence.</div>', unsafe_allow_html=True)
 
 # Create columns for better layout
 col1, col2 = st.columns(2)
 
 with col1:
-    age = st.number_input("📌 Age", min_value=0, max_value=120, value=30)
+    age = st.number_input("📌 Age", min_value=0, max_value=120, value=30, step=1)
     gender = st.selectbox("📌 Gender", ["Male", "Female"])
     smoker = st.selectbox("📌 Smoker", ["Yes", "No"])
-    years_of_smoking = st.number_input("📌 Years of Smoking", min_value=0, value=5)
-    cigarettes_per_day = st.number_input("📌 Cigarettes per Day", min_value=0, value=10)
+    years_of_smoking = st.number_input("📌 Years of Smoking", min_value=0, value=5, step=1)
+    cigarettes_per_day = st.number_input("📌 Cigarettes per Day", min_value=0, value=10, step=1)
     passive_smoker = st.selectbox("📌 Passive Smoker", ["Yes", "No"])
     family_history = st.selectbox("📌 Family History", ["Yes", "No"])
 
@@ -60,10 +99,14 @@ input_features = [
     healthcare_access_poor, early_detection
 ]
 
-# Predict button with style
-if st.button("🔍 Predict Now"):
+# Add a button with custom style
+if st.button("🔍 Predict Now", key="predict", help="Click to predict the disease presence.", use_container_width=True):
     result = predict_disease(input_features)
     st.success(result)
 
-# Disclaimer
-st.markdown("⚕️ **Disclaimer:** This tool is for educational purposes only. Consult a doctor for medical advice.")
+# Disclaimer section with a customized font
+st.markdown("""
+    <div style="text-align: center; font-size: 16px; color: #777;">
+    ⚕️ **Disclaimer:** This tool is for educational purposes only. Consult a doctor for medical advice.
+    </div>
+""", unsafe_allow_html=True)
