@@ -4,18 +4,26 @@ import numpy as np
 import plotly.express as px
 import speech_recognition as sr
 
-# Streamlit UI configuration - Make sure this is the first Streamlit command
-st.set_page_config(page_title="MultiDiPredXpert", layout="centered", page_icon="🩺")
+st.set_page_config(page_title="MultiDiPredXpert", layout="wide", initial_sidebar_state="expanded")
 
-# Add custom background image and theme
+# Optional: Add custom CSS to adjust the appearance further
 st.markdown("""
     <style>
-    body {
-        background-image: url('https://your-image-url.jpg');
-        background-size: cover;
-        background-position: center;
-        color: white;
-    }
+        body {
+            background-color: #f0f0f0;
+        }
+        .css-1d391kg {
+            font-size: 1.2rem;
+        }
+        .stButton>button {
+            background-color: #FF4B4B;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .stButton>button:hover {
+            background-color: #ff1a1a;
+        }
     </style>
 """, unsafe_allow_html=True)
 
