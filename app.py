@@ -9,17 +9,18 @@ rf_model = joblib.load("models/xgboost_model.pkl")
 def predict_disease(features):
     features = np.array(features).reshape(1, -1)
     prediction = rf_model.predict(features)[0]
-    return "🛑 Disease Detected ✅" if prediction == 1 else "✅ No Disease ❌"
+    return "🛑 Lung Cancer Detected ✅" if prediction == 1 else "✅ No Lung Cancer Detected ❌"
 
 # Apply custom CSS for styling
 st.markdown(
     """
     <style>
     body {
-        background-color: #f4f4f4;
+        background-color: #f8f9fa;
+        color: #333333;
     }
     .stApp {
-        background-color: #f9f9f9;
+        background-color: #ffffff;
         font-family: 'Arial', sans-serif;
     }
     .stButton>button {
@@ -28,6 +29,8 @@ st.markdown(
         border-radius: 10px;
         font-size: 18px;
         padding: 10px;
+        border: none;
+        transition: 0.3s;
     }
     .stButton>button:hover {
         background-color: #0056b3;
@@ -37,10 +40,17 @@ st.markdown(
         text-align: center;
         font-size: 40px;
         font-weight: bold;
+        margin-bottom: 10px;
     }
     .disclaimer {
         font-size: 14px;
         color: #ff0000;
+        text-align: center;
+    }
+    .input-container {
+        padding: 15px;
+        background-color: #f1f1f1;
+        border-radius: 10px;
     }
     </style>
     """,
@@ -50,8 +60,8 @@ st.markdown(
 # Streamlit UI
 st.set_page_config(page_title="MultiDiPredXpert", layout="centered")
 
-st.markdown('<p class="title">🩺Lung Cancer Predictor</p>', unsafe_allow_html=True)
-st.write("## Enter patient details to predict disease presence.")
+st.markdown('<p class="title">🩺 MultiDiPredXpert - Lung Cancer Prediction</p>', unsafe_allow_html=True)
+st.write("### Enter patient details to predict disease presence.")
 
 # Create columns for better layout
 col1, col2 = st.columns(2)
