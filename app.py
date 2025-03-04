@@ -1,15 +1,12 @@
 import streamlit as st
 import joblib
 import numpy as np
-import streamlit as st
-import joblib
-import numpy as np
 import speech_recognition as sr
 
-# Streamlit UI configuration - Make sure this is the first Streamlit command
+# ✅ Ensure this is the very first Streamlit command
 st.set_page_config(page_title="MultiDiPredXpert", layout="centered", initial_sidebar_state="expanded")
 
-# Optional: Add custom CSS to adjust the appearance further
+# Now proceed with the rest of your imports and code...
 st.markdown("""
     <style>
         body {
@@ -21,11 +18,6 @@ st.markdown("""
             text-align: center;
             font-size: 3rem;
             margin-bottom: 20px;
-        }
-        .stTextInput>div>input,
-        .stSelectbox>div>div>input,
-        .stNumberInput>div>input {
-            text-align: center;
         }
         .stButton>button {
             background-color: #FF4B4B;
@@ -39,18 +31,6 @@ st.markdown("""
         .stButton>button:hover {
             background-color: #FF1A1A;
         }
-        .form-container {
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .stSelectbox, .stNumberInput, .stButton {
-            margin-bottom: 10px;
-        }
     </style>
 """, unsafe_allow_html=True)
 
@@ -63,9 +43,10 @@ def predict_disease(features):
     prediction = rf_model.predict(features)[0]
     return "🛑 Disease Detected ✅" if prediction == 1 else "✅ No Disease ❌"
 
-# Streamlit UI components
+# UI Components
 st.markdown('<h1 class="title">🩺 Lung Cancer Predictor</h1>', unsafe_allow_html=True)
 st.write("### Enter patient details to predict disease presence.")
+
 
 # Create a container to hold the form and predictions
 with st.container():
