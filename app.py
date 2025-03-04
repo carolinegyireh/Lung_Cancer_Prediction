@@ -16,27 +16,35 @@ st.set_page_config(page_title="MultiDiPredXpert", layout="centered")
 
 st.title("🩺 Lung Cancer Predictor")
 st.write("### Enter patient details to predict disease presence.")
+st.write("---")
 
-# Create columns for better layout
+# Create two columns for a more organized layout
 col1, col2 = st.columns(2)
 
+# First column for personal info
 with col1:
-    age = st.number_input("📌 Age", min_value=0, max_value=120, value=30)
-    gender = st.selectbox("📌 Gender", ["Male", "Female"])
-    smoker = st.selectbox("📌 Smoker", ["Yes", "No"])
-    years_of_smoking = st.number_input("📌 Years of Smoking", min_value=0, value=5)
-    cigarettes_per_day = st.number_input("📌 Cigarettes per Day", min_value=0, value=10)
-    passive_smoker = st.selectbox("📌 Passive Smoker", ["Yes", "No"])
-    family_history = st.selectbox("📌 Family History", ["Yes", "No"])
+    age = st.number_input("📌 **Age**", min_value=0, max_value=120, value=30)
+    gender = st.selectbox("📌 **Gender**", ["Male", "Female"])
+    smoker = st.selectbox("📌 **Smoker**", ["Yes", "No"])
+    years_of_smoking = st.number_input("📌 **Years of Smoking**", min_value=0, value=5)
+    cigarettes_per_day = st.number_input("📌 **Cigarettes per Day**", min_value=0, value=10)
+
+# Second column for other health-related info
+with col2:
+    passive_smoker = st.selectbox("📌 **Passive Smoker**", ["Yes", "No"])
+    family_history = st.selectbox("📌 **Family History**", ["Yes", "No"])
+    adenocarcinoma_type = st.selectbox("📌 **Adenocarcinoma Type**", ["Yes", "No"])
+    air_pollution_exposure_low = st.selectbox("📌 **Low Air Pollution Exposure**", ["Yes", "No"])
+    air_pollution_exposure_medium = st.selectbox("📌 **Medium Air Pollution Exposure**", ["Yes", "No"])
+
+# Additional factors for exposure and healthcare
+with col1:
+    occupational_exposure = st.selectbox("📌 **Occupational Exposure**", ["Yes", "No"])
+    indoor_pollution = st.selectbox("📌 **Indoor Pollution**", ["Yes", "No"])
 
 with col2:
-    adenocarcinoma_type = st.selectbox("📌 Adenocarcinoma Type", ["Yes", "No"])
-    air_pollution_exposure_low = st.selectbox("📌 Low Air Pollution Exposure", ["Yes", "No"])
-    air_pollution_exposure_medium = st.selectbox("📌 Medium Air Pollution Exposure", ["Yes", "No"])
-    occupational_exposure = st.selectbox("📌 Occupational Exposure", ["Yes", "No"])
-    indoor_pollution = st.selectbox("📌 Indoor Pollution", ["Yes", "No"])
-    healthcare_access_poor = st.selectbox("📌 Poor Healthcare Access", ["Yes", "No"])
-    early_detection = st.selectbox("📌 Early Detection", ["Yes", "No"])
+    healthcare_access_poor = st.selectbox("📌 **Poor Healthcare Access**", ["Yes", "No"])
+    early_detection = st.selectbox("📌 **Early Detection**", ["Yes", "No"])
 
 # Convert categorical features to numerical values for the model
 gender = 1 if gender == "Male" else 0
@@ -59,10 +67,11 @@ input_features = [
     healthcare_access_poor, early_detection
 ]
 
-# Predict button with style
-if st.button("🔍 Predict Now"):
+# Add a button for prediction
+if st.button("🔍 **Predict Now**", use_container_width=True):
     result = predict_disease(input_features)
-    st.success(result)
+    st.success(result, icon="✅")
 
-# Disclaimer
-st.markdown("⚕️ **Disclaimer:** This tool is for educational purposes only. Consult a doctor for medical advice.")
+# Add a disclaimer
+st.write("---")
+st.markdown("⚕️ **Disclaimer:** This tool is for educational purposes only. Please consult a healthcare professional for medical advice.")
