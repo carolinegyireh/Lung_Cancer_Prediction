@@ -38,7 +38,6 @@ gender = 1 if gender == "Male" else 0
 smoker = 1 if smoker == "Yes" else 0
 passive_smoker = 1 if passive_smoker == "Yes" else 0
 family_history = 1 if family_history == "Yes" else 0
-lung_cancer_diagnosis = 1 if lung_cancer_diagnosis == "Yes" else 0
 adenocarcinoma_type = 1 if adenocarcinoma_type == "Yes" else 0
 air_pollution_exposure_low = 1 if air_pollution_exposure_low == "Yes" else 0
 air_pollution_exposure_medium = 1 if air_pollution_exposure_medium == "Yes" else 0
