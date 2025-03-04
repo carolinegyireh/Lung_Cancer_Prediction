@@ -14,7 +14,7 @@ def predict_disease(features):
 # Streamlit UI
 st.set_page_config(page_title="MultiDiPredXpert", layout="centered")
 
-st.title("🩺 MultiDiPredXpert - Lung Cancer Prediction")
+st.title("🩺Lung Cancer Predictor")
 st.write("Enter patient details to predict disease presence.")
 
 # Sample input fields for your dataset columns
